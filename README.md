@@ -52,45 +52,50 @@ Proyek ini dapat dijalankan melalui dua cara:
 1. Streamlit: Antarmuka web yang interaktif (direkomendasikan).
 2. (Command Line): Interface berbasis terminal.
 
-3. Persiapan Awal (Wajib)
-   Sebelum menjalankan, pastikan Anda telah melakukan langkah-langkah berikut:
+- Persiapan Awal (Wajib)
+  Sebelum menjalankan, pastikan Anda telah melakukan langkah-langkah berikut:
 
-   1. Install Dependensi: Pastikan Anda berada di virtual environment Anda dan jalankan:
-      **pip install -r requirements.txt**
+  - Install Dependensi: Pastikan Anda berada di virtual environment Anda dan jalankan:
+
+    - pip install -r requirements.txt
       Ini akan meng-install streamlit, sastrawi, nltk, scikit-learn, dan library lain yang diperlukan.
 
-   2. Unduh Data NLTK: Sistem ini memerlukan data punkt (untuk tokenisasi) dan stopwords (untuk stopword removal) dari NLTK. Jalankan perintah ini di terminal Anda:
-      **python -m nltk.downloader punkt stopwords**
+  - Unduh Data NLTK: Sistem ini memerlukan data punkt (untuk tokenisasi) dan stopwords (untuk stopword removal) dari NLTK. Jalankan perintah ini di terminal Anda:
+    - python -m nltk.downloader punkt stopwords
       (Atau, jalankan cell pertama di UTS_STKI_A11.2023.14986.ipynb ).
 
-4. Cara Menjalankan (Streamlit / Web UI)
-   Ini adalah cara yang disarankan untuk berinteraksi dengan sistem.
-   Pastikan Anda berada di root folder proyek Anda.
-   Jalankan file main.py yang ada di dalam folder app/ menggunakan Streamlit:
+- Cara Menjalankan (Streamlit / Web UI)
+  Ini adalah cara yang disarankan untuk berinteraksi dengan sistem.
+  Pastikan Anda berada di root folder proyek Anda.
+  Jalankan file main.py yang ada di dalam folder app/ menggunakan Streamlit:
 
-   **streamlit run app/main.py**  
-   Streamlit akan otomatis membuka tab baru di browser Anda (biasanya di http://localhost:8501).
-   Di dalam aplikasi web, Anda dapat memasukkan kueri dan memilih model (Boolean atau VSM) secara interaktif.
+  - streamlit run app/main.py
 
-5. Cara Menjalankan (CLI / Terminal)
-   Anda juga dapat menjalankan sistem pencarian langsung dari terminal menggunakan search.py.
-   Script ini menerima argumen command-line seperti --model, --query, dan --k.
-   Struktur Perintah:
-   **python src/search.py --model [boolean/vsm] --query "..." [--k N]**
+  Streamlit akan otomatis membuka tab baru di browser Anda (biasanya di http://localhost:8501).
+  Di dalam aplikasi web, Anda dapat memasukkan kueri dan memilih model (Boolean atau VSM) secara interaktif.
 
-   -model: (Wajib) Pilih boolean atau vsm.
-   -query: (Wajib) Masukkan kueri pencarian Anda dalam tanda kutip.
+- Cara Menjalankan (CLI / Terminal)
+  Anda juga dapat menjalankan sistem pencarian langsung dari terminal menggunakan search.py.
+  Script ini menerima argumen command-line seperti --model, --query, dan --k.
+  Struktur Perintah:
 
-   **Contoh Penggunaan CLI:**
+  - python src/search.py --model [boolean/vsm] --query "..." [--k N]
+  - --model: (Wajib) Pilih boolean atau vsm.
+  - --query: (Wajib) Masukkan kueri pencarian Anda dalam tanda kutip.
+  - --k : (Opsional) untuk menyertakan berapa banyak dokumen teratas(Top-K)
+  - **Contoh Penggunaan CLI:**
 
-   Contoh 1: Model VSM (Top 3)
-   **python src/search.py --model vsm --query "magang data analyst semarang" --k 3**
+  - Contoh 1: Model VSM (Top 3)
 
-   Contoh 2: Model VSM (Default k)
-   **python src/search.py --model vsm --query "lowongan finance di mranggen"**
+    - python src/search.py --model vsm --query "magang data analyst semarang" --k 3
 
-   Contoh 3: Model Boolean
-   **python src/search.py --model boolean --query "magang AND semarang NOT kendal"**
+  - Contoh 2: Model VSM (Default k)
 
-   Contoh 4: Model Boolean (Operator OR)
-   **python src/search.py --model boolean --query "kopi OR barista"**
+    - python src/search.py --model vsm --query "lowongan finance di mranggen"
+
+  - Contoh 3: Model Boolean
+
+    - python src/search.py --model boolean --query "magang AND semarang NOT kendal"
+
+  - Contoh 4: Model Boolean (Operator OR)
+    - python src/search.py --model boolean --query "kopi OR barista"
