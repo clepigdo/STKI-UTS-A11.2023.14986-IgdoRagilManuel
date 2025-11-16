@@ -92,7 +92,7 @@ def main():
     
     doc_names, processed_corpus, original_docs = load_data(root_dir)
     
-    # Bangun Vektorizer & Matriks TF-IDF sekali saja
+    # Bangun Vektorizer & Matriks TF-IDF 
     vectorizer = TfidfVectorizer()
     tfidf_matrix_docs = vectorizer.fit_transform(processed_corpus)
     

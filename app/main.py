@@ -4,8 +4,30 @@ import sys
 import os
 import glob
 import re # Diperlukan untuk helper snippet
+import streamlit as st
+import nltk
 
-# --- 1. PERBAIKAN LOGIKA PATH ---
+# Fungsi ini akan di-cache, hanya jalan sekali saat deploy
+@st.cache_resource
+def download_nltk_data():
+    """Unduh resource NLTK yang diperlukan."""
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt')
+    try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        nltk.download('stopwords')
+    try:
+        nltk.data.find('tokenizers/punkt_tab')
+    except LookupError:
+        nltk.download('punkt_tab')
+    print("Data NLTK sudah siap.")
+
+download_nltk_data()
+
+
 try:
     current_file_path = os.path.abspath(__file__)
 except NameError:
@@ -27,7 +49,7 @@ except ImportError as e:
     st.stop()
 
 
-# --- 3. Import NLTK untuk Kalimat (Sudah Benar) ---
+# --- 3. Import NLTK untuk Kalimat ---
 import nltk
 from nltk.tokenize import sent_tokenize
 try:
@@ -35,15 +57,15 @@ try:
 except LookupError:
     nltk.download('punkt')
 
-# --- KONFIGURASI HALAMAN (WAJIB PALING ATAS) ---
+
 st.set_page_config(
-    page_title="🚀 Mesin Pencari STKI", # Nama profesional
+    page_title="🚀 Mesin Pencari STKI",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-# --- FUNGSI HELPER (Milik Anda, sudah bagus) ---
+# --- FUNGSI HELPER ---
 def load_documents_from_folder(data_folder):
     """
     Membaca semua file .txt dari folder data.
@@ -92,7 +114,7 @@ def create_snippet(text, query_terms):
 
     query_terms_lower = {term.lower() for term in query_terms}
 
-    # 1. Loop untuk menemukan kalimat terbaik
+    # Loop untuk menemukan kalimat terbaik
     for sentence in sentences:
         hits = 0
         sentence_lower = sentence.lower()
@@ -107,22 +129,21 @@ def create_snippet(text, query_terms):
     if max_hits == 0:
         best_sentence = sentences[0] if sentences else text[:150]
 
-    # 2. Highlight terms (Soal 05.3.b - "generator template-based")
-    # Kita buat format markdown bold **...**
+
     for term in query_terms:
         try:
             best_sentence = re.sub(f"({re.escape(term)})", r"**\1**", best_sentence, flags=re.IGNORECASE)
         except re.error:
             pass 
     
-    # 3. Potong jika terlalu panjang (sesuai Soal 04 - "snippet 120 char" - kita buat 250)
+    
     if len(best_sentence) > 250:
         best_sentence = "..." + best_sentence[:250] + "..."
         
     return best_sentence
 
 
-# --- FUNGSI LOAD MODEL (Milik Anda, sudah bagus) ---
+# --- FUNGSI LOAD MODEL ---
 @st.cache_resource(show_spinner="🧙‍♂️ Merapal mantra TF-IDF... Harap sabar, ya!")
 def load_all_models_from_src(data_folder='data'):
     """
@@ -177,18 +198,18 @@ with st.spinner('✨ Menyulap data menjadi informasi... Hampir siap! ✨'):
 
 if error_msg:
     st.error(f"💥 OH TIDAK! Terjadi kesalahan fatal saat memuat model:\n\n{error_msg}")
-    st.stop() # Hentikan aplikasi jika model gagal dimuat
+    st.stop() 
 
-# --- CUSTOM CSS UNTUK TAMPILAN MODERN ---
+# --- Disini Saya Menggunakan Inline Custom CSS ---
 st.markdown(
     """
     <style>
-    /* Tema Gelap Keren */
+   
     .stApp {
         background-color: #0E1117; 
         color: #e0e0e0;
     }
-    .css-1d3f8gv { /* Sidebar */
+    .css-1d3f8gv { 
         background-color: #1a1a2e; 
     }
     .stTextInput>div>div>input {
@@ -218,7 +239,7 @@ st.markdown(
     }
     .stAlert { border-radius: 8px; }
     
-    /* --- TAMPILAN CARD HASIL PENCARIAN (BARU!) --- */
+
     .result-card {
         background-color: #1a1a2e;
         padding: 20px;
@@ -233,13 +254,13 @@ st.markdown(
     }
     .result-title a {
         font-size: 22px;
-        color: #87CEEB; /* Biru langit */
+        color: #87CEEB; 
         text-decoration: none;
         font-weight: 600;
     }
     .result-url {
         font-size: 14px;
-        color: #90ee90; /* Hijau muda */
+        color: #90ee90; 
         margin-bottom: 8px;
     }
     .result-snippet {
@@ -248,7 +269,7 @@ st.markdown(
         line-height: 1.6;
     }
     .result-snippet strong, .result-snippet b {
-        color: #f7b32b; /* Kuning emas (untuk highlight) */
+        color: #f7b32b; 
         font-weight: bold;
     }
     .result-footer {
@@ -315,7 +336,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.write("") # Spasi
+st.write("")
 
 # --- FORM PENCARIAN ---
 with st.form(key='search_form', clear_on_submit=False):
@@ -341,7 +362,7 @@ if submit_button:
         st.markdown("---")
         st.header(f"✨ Hasil Pencarian untuk: '{query}'")
         
-        start_time = time.time() # Mulai hitung waktu
+        start_time = time.time() 
         
         # --- MODE 1: VSM ---
         if search_mode.startswith("✨ VSM"):
@@ -366,7 +387,7 @@ if submit_button:
                 
                 for doc_name, score in results_scores:
                     full_text = docs_map[doc_name]
-                    # Buat snippet (Soal 05.3.b - gabungkan kalimat kunci)
+                    # Buat snippet 
                     snippet = create_snippet(full_text, query_terms) 
                     results.append((doc_name, score, snippet))
             
@@ -382,7 +403,7 @@ if submit_button:
                 for i, (doc_name, score, snippet) in enumerate(results):
                     judul_bersih = doc_name.replace(".txt", "").replace("doc", "").replace("_", " ").strip().title()
                     
-                    # --- TAMPILAN CARD BARU (VSM) ---
+                    # --- TAMPILAN CARD (VSM) ---
                     st.markdown(
                         f"""
                         <div class="result-card">
@@ -396,7 +417,7 @@ if submit_button:
                         """,
                         unsafe_allow_html=True
                     )
-                    st.write("") # Spasi kecil
+                    st.write("") 
 
         # --- MODE 2: BOOLEAN ---
         else: # Mode Boolean
@@ -421,9 +442,9 @@ if submit_button:
                     for i, doc_name in enumerate(results):
                         full_text = docs_map[doc_name]
                         judul_bersih = doc_name.replace(".txt", "").replace("doc", "").replace("_", " ").strip().title()
-                        snippet = create_snippet(full_text, query_terms) # Buat snippet juga untuk Boolean
+                        snippet = create_snippet(full_text, query_terms) # snippet untuk Boolean
 
-                        # --- TAMPILAN CARD BARU (BOOLEAN) ---
+                        # --- TAMPILAN CARD (BOOLEAN) ---
                         st.markdown(
                             f"""
                             <div class="result-card" style="border-left-color: #008080;"> 
@@ -437,10 +458,10 @@ if submit_button:
                             """,
                             unsafe_allow_html=True
                         )
-                        st.write("") # Spasi kecil
+                        st.write("") 
                         
             except Exception as e:
                  st.error(f"💥 Ups, ada yang salah dengan mantra Booleanmu. Pastikan sintaks (AND, OR, NOT) sudah benar.\nError: {e}")
 else:
-    # Pesan sambutan awal
+   
     st.info("Selamat datang! Silakan pilih model dan masukkan kueri di atas untuk memulai pencarian. 🚀")

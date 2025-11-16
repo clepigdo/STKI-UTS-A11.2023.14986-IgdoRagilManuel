@@ -1,10 +1,10 @@
-# --- GANTI TOTAL ISI src/vsm_ir.py DENGAN INI ---
+
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-# (Kita tidak mengimpor apapun dari src/preprocess di level atas)
+
 
 def build_vsm_model(processed_corpus_text):
     """
@@ -16,12 +16,12 @@ def build_vsm_model(processed_corpus_text):
     """
     
     # 1. Buat Vectorizer
-    # Teks SUDAH bersih, jadi JANGAN tambahkan stop_words
+    
     vectorizer = TfidfVectorizer()
     
     # 2. Buat TF-IDF Matrix
-    # Kita langsung gunakan 'processed_corpus_text'
-    # KITA HAPUS BARIS: processed_corpus_text = [' '.join(tokens)...]
+    
+    
     tfidf_matrix_docs = vectorizer.fit_transform(processed_corpus_text)
     
     print("Model VSM (TfidfVectorizer) berhasil dibangun di vsm_ir.py.")
@@ -40,8 +40,7 @@ def search_vsm(query_text, vsm_model, doc_names, preprocessed_docs, k=5):
     vectorizer, tfidf_matrix_docs = vsm_model
     
     # 2. Preprocess kueri PENGGUNA (string mentah)
-    # Kita harus memanggil 'preprocess_text' di sini
-    # agar kueri diproses SAMA seperti dokumen.
+    
     try:
         from src.preprocess import preprocess_text
     except ImportError:
