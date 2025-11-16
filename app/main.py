@@ -171,9 +171,7 @@ def load_all_models_from_src(data_folder='data'):
         if not any(docs_preprocessed_list):
             print("KESALAHAN FATAL: Semua dokumen kosong setelah preprocessing.")
             raise ValueError(
-                "Semua dokumen kosong setelah preprocessing. "
-                "Periksa file 'src/preprocess.py' Anda. "
-                "Kemungkinan stop word list Anda terlalu agresif."
+                
             )
 
         print("Membangun model VSM...")
@@ -292,7 +290,7 @@ with st.sidebar:
     
     st.markdown("### 1. Pilih Model Pencarian")
     search_mode = st.radio(
-        "Pilih Model (Soal 05.2.a)",
+        "Pilih Model",
         ("✨ VSM (Ranking & Relevansi)", "🎯 Boolean (Pencarian Tepat)"),
         index=0
     )
@@ -302,15 +300,15 @@ with st.sidebar:
     if search_mode.startswith("✨ VSM"):
         st.markdown("### 2. Atur Parameter VSM")
         top_k = st.slider(
-            "Atur Top-K (Soal 04 & 05.2.a)", 
+            "Atur Top-K", 
             min_value=1, max_value=20, value=5, 
-            help="Pilih jumlah dokumen teratas (k=3 atau 5 sesuai soal)."
+            help="Pilih jumlah dokumen teratas"
         )
     else:
         st.markdown("### 2. Petunjuk Model Boolean")
         st.info(
             """
-            Gunakan operator (Soal 03):
+            Gunakan operator:
             - `AND`: `admin AND semarang`
             - `OR`: `magang OR internship`
             - `NOT`: `designer NOT freelance`
@@ -325,14 +323,7 @@ with st.sidebar:
 
 # Judul Utama
 st.markdown(
-    """
-    <h1 style='text-align: center; font-size: 2.5em;'>
-        Sistem Temu Kembali Informasi (STKI)
-    </h1>
-    <p style='text-align: center; color: #b0e0e6; font-size: 1.2em;'>
-        Mesin Pencari Lowongan Kerja - Semarang (Corpus 15 Dokumen)
-    </p>
-    """,
+    
     unsafe_allow_html=True
 )
 
