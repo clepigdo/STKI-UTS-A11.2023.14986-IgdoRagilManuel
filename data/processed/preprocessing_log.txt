@@ -1,0 +1,16 @@
+--- LOG PREPROCESSING ---
+Sukses: 'doc01_magang_web_smg_tengah.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc01_magang_web_smg_tengah.txt' | 31 tokens.
+Sukses: 'doc02_magang_data_remote_smg.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc02_magang_data_remote_smg.txt' | 30 tokens.
+Sukses: 'doc03_magang_uiux_smg_barat.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc03_magang_uiux_smg_barat.txt' | 26 tokens.
+Sukses: 'doc04_magang_marketing_simpanglima.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc04_magang_marketing_simpanglima.txt' | 24 tokens.
+Sukses: 'doc05_magang_akuntansi_smg.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc05_magang_akuntansi_smg.txt' | 29 tokens.
+Sukses: 'doc06_part_time_kopi_tembalang.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc06_part_time_kopi_tembalang.txt' | 25 tokens.
+Sukses: 'doc07_part_time_admin_wfh.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc07_part_time_admin_wfh.txt' | 33 tokens.
+Sukses: 'doc08_part_time_resto_gajahmungkur.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc08_part_time_resto_gajahmungkur.txt' | 22 tokens.
+Sukses: 'doc09_fulltime_web_smg.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc09_fulltime_web_smg.txt' | 23 tokens.
+Sukses: 'doc10_fulltime_sales_smg.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc10_fulltime_sales_smg.txt' | 20 tokens.
+Sukses: 'doc11_fulltime_hrd_smg_timur.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc11_fulltime_hrd_smg_timur.txt' | 22 tokens.
+Sukses: 'doc12_fulltime_admin_ungaran.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc12_fulltime_admin_ungaran.txt' | 24 tokens.
+Sukses: 'doc13_magang_pabrik_kendal.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc13_magang_pabrik_kendal.txt' | 19 tokens.
+Sukses: 'doc14_part_time_kopi_ungaran.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc14_part_time_kopi_ungaran.txt' | 38 tokens.
+Sukses: 'doc15_fulltime_finance_mranggen.txt' -> 'c:\stki-uts-A11.2023.14986-IgdoRagilManuel\data\processed\processed_doc15_fulltime_finance_mranggen.txt' | 15 tokens.

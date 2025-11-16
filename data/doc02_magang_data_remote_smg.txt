@@ -1,0 +1,19 @@
+Posisi: Magang - Data Analyst
+
+Lokasi: Remote (WFH)
+
+Keterangan Lokasi: Perusahaan berbasis di Semarang
+
+Kualifikasi:
+
+Mahasiswa aktif semester 5 ke atas.
+
+Skill wajib: Python (khususnya Pandas).
+
+Skill wajib: SQL.
+
+Tugas Utama:
+
+Membersihkan data mentah.
+
+Membuat visualisasi untuk report bulanan.
