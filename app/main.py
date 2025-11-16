@@ -99,10 +99,7 @@ def load_documents_from_folder(data_folder):
     return docs_raw_map, doc_names
 
 def create_snippet(text, query_terms):
-    """
-    Membuat snippet (kalimat kunci) sesuai Soal 05.3.b.
-    Ini akan menyorot kata kunci kueri dalam kalimat terbaik.
-    """
+    
     try:
         sentences = sent_tokenize(text)
     except Exception as e:
@@ -300,7 +297,7 @@ with st.sidebar:
     if search_mode.startswith("✨ VSM"):
         st.markdown("### 2. Atur Parameter VSM")
         top_k = st.slider(
-            "Atur Top-K", 
+            "Atur Top-K (Soal 04 & 05.2.a)", 
             min_value=1, max_value=20, value=5, 
             help="Pilih jumlah dokumen teratas"
         )
@@ -323,7 +320,14 @@ with st.sidebar:
 
 # Judul Utama
 st.markdown(
-    
+    """
+    <h1 style='text-align: center; font-size: 2.5em;'>
+        Sistem Temu Kembali Informasi (STKI)
+    </h1>
+    <p style='text-align: center; color: #b0e0e6; font-size: 1.2em;'>
+        Mesin Pencari Lowongan Kerja - Semarang (Corpus 15 Dokumen)
+    </p>
+    """,
     unsafe_allow_html=True
 )
 
