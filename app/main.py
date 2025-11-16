@@ -297,7 +297,7 @@ with st.sidebar:
     if search_mode.startswith("✨ VSM"):
         st.markdown("### 2. Atur Parameter VSM")
         top_k = st.slider(
-            "Atur Top-K (Soal 04 & 05.2.a)", 
+            "Atur Top-K : ", 
             min_value=1, max_value=20, value=5, 
             help="Pilih jumlah dokumen teratas"
         )
